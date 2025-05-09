@@ -243,6 +243,9 @@ p {
   transition: all 0.3s ease;
   max-height: 60vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #personality-result:hover {
@@ -251,11 +254,21 @@ p {
 }
 
 #personality-emoji {
-  font-size: 5rem;
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 1rem auto;
+}
+
+#personality-emoji .fas {
+  position: relative;
+  margin-left: 12px;
+  font-size: 0.6em;
   display: inline-block;
-  animation: bounce 2s infinite;
-  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
 }
 
 @keyframes bounce {
@@ -444,8 +457,13 @@ p {
   }
 
   #personality-emoji {
+    flex-direction: row;
     font-size: 3rem;
-    margin-bottom: 0.5rem;
+  }
+
+  #personality-emoji .fas {
+    margin-left: 8px;
+    font-size: 0.7em;
   }
 
   #personality-title {
@@ -494,11 +512,6 @@ p {
     flex-direction: column;
     gap: 0.5rem;
   }
-
-  #personality-emoji .fas {
-    margin-left: 8px;
-    font-size: 2rem;
-  }
 }
 
 /* Extra small device optimizations */
@@ -531,6 +544,10 @@ p {
 
   #personality-emoji {
     font-size: 2.8rem;
+  }
+
+  #personality-emoji .fas {
+    font-size: 0.6em;
   }
 
   #personality-title {
@@ -646,4 +663,10 @@ p {
     overflow-y: auto;
     padding-right: 5px;
   }
+}
+
+/* Create stable wrapper for emoji */
+.emoji-wrap {
+  display: inline-block;
+  position: relative;
 }

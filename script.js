@@ -286,8 +286,8 @@ function showResults() {
   const personalityResultCard = document.getElementById("personality-result");
   personalityResultCard.style.backgroundColor = result.bgColor;
 
-  // Add icon to emoji display for extra visual appeal
-  personalityEmoji.innerHTML = `${result.emoji} <i class="fas ${result.icon}"></i>`;
+  // Just display the emoji without the icon
+  personalityEmoji.innerHTML = `${result.emoji}`;
 
   // Update progress bar to 100%
   progressFill.style.width = "100%";
