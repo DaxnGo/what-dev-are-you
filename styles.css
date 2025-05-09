@@ -1,0 +1,647 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  padding: 20px;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 650px;
+  padding: 2.5rem;
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.container:hover {
+  transform: none;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.section {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  text-align: center;
+  max-height: 100%;
+  overflow-y: visible;
+}
+
+.section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeIn 0.7s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  color: #6a11cb;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+  color: #333;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  margin: 0.7rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  transition: all 0.4s ease;
+  z-index: -1;
+  border-radius: 50px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(69, 104, 220, 0.4);
+}
+
+.btn:hover:before {
+  width: 100%;
+}
+
+.answers-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 2.5rem;
+}
+
+.answer-btn {
+  background-color: white;
+  border: 2px solid #e1e1e1;
+  border-radius: 12px;
+  padding: 18px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.answer-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 5px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.answer-btn:hover {
+  border-color: #6a11cb;
+  background-color: #f5f8ff;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 15px rgba(106, 17, 203, 0.15);
+}
+
+.answer-btn:hover:before {
+  opacity: 1;
+}
+
+#progress-bar {
+  height: 10px;
+  background-color: rgba(225, 225, 225, 0.7);
+  border-radius: 5px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  width: 0%;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+#progress-fill:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+#personality-result {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 5px 15px rgba(106, 17, 203, 0.1);
+  transition: all 0.3s ease;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+#personality-result:hover {
+  box-shadow: 0 8px 25px rgba(106, 17, 203, 0.12);
+  transform: none;
+}
+
+#personality-emoji {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: bounce 2s infinite;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+#personality-title {
+  color: #6a11cb;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#personality-description {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+  max-height: 40vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+#share-btn {
+  background: linear-gradient(135deg, #00c6fb, #005bea);
+}
+
+#restart-btn {
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+}
+
+#intro {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    width: 95%;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    margin: 0.4rem;
+  }
+
+  .answers-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .answer-btn {
+    padding: 12px 10px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+  }
+
+  .answer-icon {
+    width: 16px;
+    margin-right: 5px;
+  }
+
+  #personality-emoji {
+    font-size: 3.5rem;
+  }
+
+  #personality-title {
+    font-size: 1.6rem;
+  }
+
+  #personality-description {
+    font-size: 0.9rem;
+  }
+
+  #progress-bar {
+    margin-bottom: 1.5rem;
+  }
+
+  .quiz-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .answers-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .answer-btn {
+    padding: 12px;
+    min-height: auto;
+  }
+
+  .container {
+    padding: 1.2rem;
+    border-radius: 15px;
+    max-height: 80vh;
+  }
+
+  #question-text {
+    font-size: 1.2rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons .btn {
+    margin: 0.3rem;
+    width: 100%;
+  }
+
+  body {
+    padding: 10px;
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
+/* Add more specific styling for the footer */
+.quiz-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(69, 104, 220, 0.1);
+  font-size: 0.8rem;
+  color: #888;
+  text-align: center;
+}
+
+/* Style the code icon in header */
+.fas.fa-code {
+  display: inline-block;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Create a subtle pattern overlay on the background */
+body:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(106, 17, 203, 0.05) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 30% 40%,
+      rgba(37, 117, 252, 0.05) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(106, 17, 203, 0.05) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(37, 117, 252, 0.05) 1px,
+      transparent 1px
+    );
+  background-size: 20% 20%;
+}
+
+/* Create a subtle pattern overlay on the background */
+body:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236a11cb' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Improve button styling */
+.answer-btn:focus {
+  outline: none;
+  border-color: #4568dc;
+  box-shadow: 0 0 0 3px rgba(69, 104, 220, 0.2);
+}
+
+.answer-btn:active {
+  transform: scale(0.98);
+}
+
+/* Highlight the active section with a subtle glow */
+.section.active {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(69, 104, 220, 0);
+  }
+  to {
+    box-shadow: 0 0 15px rgba(69, 104, 220, 0.1);
+  }
+}
+
+/* Add a subtle hover effect to the container */
+.container:after {
+  display: none;
+}
+
+/* Improve result display */
+#personality-emoji .fas {
+  margin-left: 15px;
+  font-size: 3rem;
+  vertical-align: middle;
+  opacity: 0.7;
+}
+
+/* Make action buttons more prominent */
+.action-buttons .btn {
+  min-width: 180px;
+}
+
+/* Update answer icon color */
+.answer-icon {
+  margin-right: 10px;
+  color: #6a11cb;
+  display: inline-block;
+  width: 20px;
+}
+
+/* Update result icon color */
+.result-icon {
+  color: #6a11cb;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  animation: pulse 2s infinite;
+}
+
+/* Add more optimization for mobile */
+
+/* Make the container adjust its height based on viewport */
+.container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 650px;
+  padding: 2.5rem;
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Make answer text truncate if too long */
+.answer-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.3;
+}
+
+/* Reduce the size of the emoji on smaller screens for results */
+@media (max-height: 700px) {
+  #personality-emoji {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  #personality-result {
+    margin: 1.5rem 0;
+    padding: 1rem;
+  }
+
+  #personality-description {
+    max-height: 30vh;
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+}
+
+/* Extra small device optimizations */
+@media (max-width: 360px) {
+  .container {
+    padding: 1rem;
+    width: 98%;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .answer-btn {
+    padding: 8px 6px;
+    min-height: 45px;
+  }
+
+  .answer-icon {
+    width: 14px;
+    margin-right: 4px;
+  }
+
+  .answers-container {
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Better vertical spacing for different heights */
+@media (max-height: 600px) {
+  body {
+    align-items: flex-start;
+    padding-top: 30px;
+    height: auto;
+  }
+
+  .container {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .question-counter {
+    margin-bottom: 5px;
+  }
+
+  #progress-bar {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Fix for iOS devices which may have scrolling issues */
+@supports (-webkit-touch-callout: none) {
+  body {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+  }
+
+  .container {
+    max-height: 80vh;
+    -webkit-overflow-scrolling: touch;
+  }
+}

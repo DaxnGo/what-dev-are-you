@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Personality Quiz</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Dev Personality Quiz" />
+    <meta
+      name="description"
+      content="Discover what type of developer you are! Take this fun quiz to reveal your unique coding personality." />
+
+    <!-- Canonical link will be updated dynamically -->
+    <link rel="canonical" href="" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:title" content="Dev Personality Quiz" />
+    <meta
+      property="og:description"
+      content="Discover what type of developer you are! Take this fun quiz to reveal your unique coding personality." />
+    <meta
+      property="og:image"
+      content="https://via.placeholder.com/1200x630/6a11cb/ffffff?text=Dev+Personality+Quiz" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="" />
+    <meta property="twitter:title" content="Dev Personality Quiz" />
+    <meta
+      property="twitter:description"
+      content="Discover what type of developer you are! Take this fun quiz to reveal your unique coding personality." />
+    <meta
+      property="twitter:image"
+      content="https://via.placeholder.com/1200x630/6a11cb/ffffff?text=Dev+Personality+Quiz" />
+
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Add schema.org structured data for rich results -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Quiz",
+        "name": "Dev Personality Quiz",
+        "description": "Discover what type of developer you are! Take this fun quiz to reveal your unique coding personality.",
+        "educationalAlignment": "Software Development",
+        "about": {
+          "@type": "Thing",
+          "name": "Developer Personalities",
+          "description": "Different types of developer personalities and coding styles"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="intro" class="section active">
+        <div class="quiz-icon"><i class="fas fa-code"></i></div>
+        <h1>Dev Personality Quiz</h1>
+        <p>
+          Discover what type of developer you are! Answer a few questions about
+          your preferences and habits to reveal your unique coding personality.
+        </p>
+        <button id="start-btn" class="btn">
+          <i class="fas fa-play"></i> Start Quiz
+        </button>
+      </div>
+
+      <div id="quiz" class="section">
+        <div class="question-counter">
+          Question <span id="current-question">1</span>/<span
+            id="total-questions"
+            >7</span
+          >
+        </div>
+        <div id="progress-bar">
+          <div id="progress-fill"></div>
+        </div>
+        <h2 id="question-text"></h2>
+        <div id="answers" class="answers-container">
+          <!-- Answer choices will be generated here -->
+        </div>
+      </div>
+
+      <div id="result" class="section">
+        <div class="result-header">
+          <i class="fas fa-award result-icon"></i>
+          <h1>Your Dev Personality</h1>
+        </div>
+        <div id="personality-result">
+          <div id="personality-emoji"></div>
+          <h2 id="personality-title"></h2>
+          <p id="personality-description"></p>
+        </div>
+        <div class="action-buttons">
+          <button id="restart-btn" class="btn">
+            <i class="fas fa-redo"></i> Take Quiz Again
+          </button>
+          <button id="share-btn" class="btn">
+            <i class="fas fa-share-alt"></i> Share Result
+          </button>
+        </div>
+      </div>
+
+      <footer class="quiz-footer">
+        <div class="footer-text">
+          Created with <i class="fas fa-heart"></i> for developers
+        </div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
