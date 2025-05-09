@@ -3,85 +3,194 @@ const quizData = [
   {
     question: "What's your favorite part of coding?",
     answers: [
-      { text: "Fixing tricky bugs", type: "bugSquasher" },
-      { text: "Designing beautiful UIs", type: "pixelPerfectionist" },
-      { text: "Solving logic puzzles", type: "algorithmArchitect" },
-      { text: "Setting up deployment pipelines", type: "cloudWhisperer" },
-      { text: "Learning new frameworks", type: "frameworkFanatic" },
+      { text: "Fixing tricky bugs", type: "bugSquasher", icon: "fa-wrench" },
+      {
+        text: "Designing beautiful UIs",
+        type: "pixelPerfectionist",
+        icon: "fa-paint-brush",
+      },
+      {
+        text: "Solving logic puzzles",
+        type: "algorithmArchitect",
+        icon: "fa-puzzle-piece",
+      },
+      {
+        text: "Setting up deployment pipelines",
+        type: "cloudWhisperer",
+        icon: "fa-server",
+      },
+      {
+        text: "Learning new frameworks",
+        type: "frameworkFanatic",
+        icon: "fa-book",
+      },
     ],
   },
   {
     question: "Your go-to coffee coding fuel?",
     answers: [
-      { text: "Black coffee", type: "bugSquasher" },
-      { text: "Matcha latte", type: "pixelPerfectionist" },
-      { text: "Bubble tea", type: "algorithmArchitect" },
-      { text: "Energy drink", type: "cloudWhisperer" },
-      { text: "Cold brew with fancy add-ins", type: "frameworkFanatic" },
+      { text: "Black coffee", type: "bugSquasher", icon: "fa-coffee" },
+      { text: "Matcha latte", type: "pixelPerfectionist", icon: "fa-leaf" },
+      {
+        text: "Bubble tea",
+        type: "algorithmArchitect",
+        icon: "fa-glass-cheers",
+      },
+      { text: "Energy drink", type: "cloudWhisperer", icon: "fa-bolt" },
+      {
+        text: "Cold brew with fancy add-ins",
+        type: "frameworkFanatic",
+        icon: "fa-cocktail",
+      },
     ],
   },
   {
     question: "When a project is due tomorrow, you're focused on:",
     answers: [
-      { text: "Making sure there are no errors", type: "bugSquasher" },
+      {
+        text: "Making sure there are no errors",
+        type: "bugSquasher",
+        icon: "fa-check-circle",
+      },
       {
         text: "Ensuring the UI looks exactly right",
         type: "pixelPerfectionist",
+        icon: "fa-ruler",
       },
-      { text: "Optimizing for performance", type: "algorithmArchitect" },
-      { text: "Making sure it's deployed properly", type: "cloudWhisperer" },
-      { text: "Adding just one more feature", type: "frameworkFanatic" },
+      {
+        text: "Optimizing for performance",
+        type: "algorithmArchitect",
+        icon: "fa-tachometer-alt",
+      },
+      {
+        text: "Making sure it's deployed properly",
+        type: "cloudWhisperer",
+        icon: "fa-upload",
+      },
+      {
+        text: "Adding just one more feature",
+        type: "frameworkFanatic",
+        icon: "fa-plus-circle",
+      },
     ],
   },
   {
     question: "Your desk is usually:",
     answers: [
-      { text: "Organized chaos with notes about bugs", type: "bugSquasher" },
+      {
+        text: "Organized chaos with notes about bugs",
+        type: "bugSquasher",
+        icon: "fa-sticky-note",
+      },
       {
         text: "Minimalist with color coordinated accessories",
         type: "pixelPerfectionist",
+        icon: "fa-ruler-combined",
       },
-      { text: "Whiteboard nearby with diagrams", type: "algorithmArchitect" },
-      { text: "Multiple monitors showing dashboards", type: "cloudWhisperer" },
-      { text: "Surrounded by gadgets and new tech", type: "frameworkFanatic" },
+      {
+        text: "Whiteboard nearby with diagrams",
+        type: "algorithmArchitect",
+        icon: "fa-chalkboard",
+      },
+      {
+        text: "Multiple monitors showing dashboards",
+        type: "cloudWhisperer",
+        icon: "fa-desktop",
+      },
+      {
+        text: "Surrounded by gadgets and new tech",
+        type: "frameworkFanatic",
+        icon: "fa-laptop-code",
+      },
     ],
   },
   {
     question: "In a team project, you naturally take on the role of:",
     answers: [
-      { text: "Quality assurance and testing", type: "bugSquasher" },
-      { text: "UI/UX implementation", type: "pixelPerfectionist" },
-      { text: "Data structures and algorithms", type: "algorithmArchitect" },
-      { text: "DevOps and infrastructure", type: "cloudWhisperer" },
+      {
+        text: "Quality assurance and testing",
+        type: "bugSquasher",
+        icon: "fa-vial",
+      },
+      {
+        text: "UI/UX implementation",
+        type: "pixelPerfectionist",
+        icon: "fa-pencil-ruler",
+      },
+      {
+        text: "Data structures and algorithms",
+        type: "algorithmArchitect",
+        icon: "fa-sitemap",
+      },
+      {
+        text: "DevOps and infrastructure",
+        type: "cloudWhisperer",
+        icon: "fa-network-wired",
+      },
       {
         text: "Researching and integrating new tech",
         type: "frameworkFanatic",
+        icon: "fa-search",
       },
     ],
   },
   {
     question: "Your browser usually has tabs open for:",
     answers: [
-      { text: "Stack Overflow and documentation", type: "bugSquasher" },
-      { text: "Dribbble and design inspiration", type: "pixelPerfectionist" },
+      {
+        text: "Stack Overflow and documentation",
+        type: "bugSquasher",
+        icon: "fa-question-circle",
+      },
+      {
+        text: "Dribbble and design inspiration",
+        type: "pixelPerfectionist",
+        icon: "fa-images",
+      },
       {
         text: "LeetCode and algorithm visualizers",
         type: "algorithmArchitect",
+        icon: "fa-code",
       },
-      { text: "AWS console and monitoring tools", type: "cloudWhisperer" },
-      { text: "GitHub repos and new framework docs", type: "frameworkFanatic" },
+      {
+        text: "AWS console and monitoring tools",
+        type: "cloudWhisperer",
+        icon: "fa-chart-line",
+      },
+      {
+        text: "GitHub repos and new framework docs",
+        type: "frameworkFanatic",
+        icon: "fa-github",
+      },
     ],
   },
   {
     question: "When you dream about code, it's usually about:",
     answers: [
-      { text: "Finally fixing that mysterious bug", type: "bugSquasher" },
-      { text: "Creating a beautiful animation", type: "pixelPerfectionist" },
-      { text: "Elegant data structures", type: "algorithmArchitect" },
-      { text: "Perfectly scaled infrastructure", type: "cloudWhisperer" },
+      {
+        text: "Finally fixing that mysterious bug",
+        type: "bugSquasher",
+        icon: "fa-bug",
+      },
+      {
+        text: "Creating a beautiful animation",
+        type: "pixelPerfectionist",
+        icon: "fa-magic",
+      },
+      {
+        text: "Elegant data structures",
+        type: "algorithmArchitect",
+        icon: "fa-cube",
+      },
+      {
+        text: "Perfectly scaled infrastructure",
+        type: "cloudWhisperer",
+        icon: "fa-expand",
+      },
       {
         text: "Building something with the newest tech",
         type: "frameworkFanatic",
+        icon: "fa-lightbulb",
       },
     ],
   },
@@ -206,9 +315,8 @@ function showQuestion() {
     const button = document.createElement("button");
     button.classList.add("answer-btn");
 
-    // Add some personality-based styling
-    const type = answer.type;
-    const icon = personalityTypes[type].icon;
+    // Use the answer-specific icon instead of the personality type icon
+    const icon = answer.icon || personalityTypes[answer.type].icon;
 
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 576;
