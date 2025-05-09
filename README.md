@@ -57,6 +57,5 @@ A fun interactive quiz to discover your developer personality type. Find out if 
 
 - Add sound effects for interactions
 - Create a database to store quiz statistics
-- Enable true social media sharing with proper meta tags
 - Add more questions and personality types
 - Implement an option to view all possible personality types
