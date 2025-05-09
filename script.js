@@ -323,17 +323,11 @@ function shareResult() {
   // Create share text
   const shareText = `I'm ${emoji} ${title} according to the Dev Personality Quiz! Find out your type!`;
 
-  // Get the image URL from meta tag
-  const imageUrl = document
-    .querySelector('meta[property="og:image"]')
-    .getAttribute("content");
-
   // Create sharing data with metadata
   const shareData = {
     title: "Dev Personality Quiz Result",
     text: shareText,
     url: shareUrl,
-    image: imageUrl, // Include the image URL
   };
 
   // Show visual feedback for button press
@@ -342,74 +336,15 @@ function shareResult() {
 
   // Check if Web Share API is available
   if (navigator.share) {
-    // Create a share object, some browsers support files/images in the share API
-    const shareObj = {
-      title: shareData.title,
-      text: shareData.text,
-      url: shareData.url,
-    };
-
-    // Try to include the image if possible
-    try {
-      // Some browsers allow sharing files or blobs
-      fetch(imageUrl)
-        .then((response) => response.blob())
-        .then((blob) => {
-          // In some browsers, you can include files in the share
-          const file = new File([blob], "dev-personality.png", {
-            type: "image/png",
-          });
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            shareObj.files = [file];
-          }
-
-          // Attempt to share with the enhanced object
-          navigator
-            .share(shareObj)
-            .then(() => {
-              showNotification("Shared successfully!");
-            })
-            .catch((error) => {
-              console.error("Error sharing:", error);
-              // Try again without the image
-              navigator
-                .share({
-                  title: shareData.title,
-                  text: shareData.text,
-                  url: shareData.url,
-                })
-                .then(() => {
-                  showNotification("Shared successfully!");
-                })
-                .catch(() => {
-                  fallbackShare(shareData);
-                });
-            });
-        })
-        .catch(() => {
-          // If we can't fetch the image, just share without it
-          navigator
-            .share(shareObj)
-            .then(() => {
-              showNotification("Shared successfully!");
-            })
-            .catch((error) => {
-              console.error("Error sharing:", error);
-              fallbackShare(shareData);
-            });
-        });
-    } catch (error) {
-      // If any errors occur in the fetch/share process, try simplified sharing
-      navigator
-        .share(shareObj)
-        .then(() => {
-          showNotification("Shared successfully!");
-        })
-        .catch((error) => {
-          console.error("Error sharing:", error);
-          fallbackShare(shareData);
-        });
-    }
+    navigator
+      .share(shareData)
+      .then(() => {
+        showNotification("Shared successfully!");
+      })
+      .catch((error) => {
+        console.error("Error sharing:", error);
+        fallbackShare(shareData);
+      });
   } else {
     fallbackShare(shareData);
   }
@@ -481,54 +416,20 @@ function updateAllMetadata(result) {
   document.title = `${result.title} - Dev Personality Quiz Result`;
 
   // Update Open Graph meta tags
-  updateMetaTag(
-    "og:title",
-    `${result.emoji} ${result.title} - Dev Personality Quiz Result`
-  );
+  updateMetaTag("og:title", `${result.title} - Dev Personality Quiz Result`);
   updateMetaTag("og:description", description);
 
   // Update Twitter meta tags
   updateMetaTag(
     "twitter:title",
-    `${result.emoji} ${result.title} - Dev Personality Quiz Result`
+    `${result.title} - Dev Personality Quiz Result`
   );
   updateMetaTag("twitter:description", description);
 
-  // Update image with dynamic image URL that includes the personality type
-  // First try using the base URL with appropriate path
-  let baseUrl = window.location.origin;
-
-  // If deployed on GitHub Pages or similar, we need to handle subdirectories
-  if (window.location.pathname.includes("/")) {
-    const pathParts = window.location.pathname.split("/");
-    // Remove the last part if it's a file
-    if (pathParts[pathParts.length - 1].includes(".")) {
-      pathParts.pop();
-    }
-    baseUrl += pathParts.join("/");
-  }
-
-  // Ensure the baseUrl ends with a slash
-  if (!baseUrl.endsWith("/")) {
-    baseUrl += "/";
-  }
-
-  const imageUrl = `${baseUrl}Images/DevQuiz.png`;
+  // Update image with actual image
+  const imageUrl = window.location.origin + "/Images/DevQuiz.png";
   updateMetaTag("og:image", imageUrl);
   updateMetaTag("twitter:image", imageUrl);
-
-  // Add additional metadata to ensure the image appears with the personality type
-  updateMetaTag(
-    "og:image:alt",
-    `${result.emoji} ${result.title} - Dev Personality Quiz Result`
-  );
-  updateMetaTag(
-    "twitter:image:alt",
-    `${result.emoji} ${result.title} - Dev Personality Quiz Result`
-  );
-
-  // Ensure proper card type for Twitter
-  updateMetaTag("twitter:card", "summary_large_image");
 
   // Update structured data
   updateStructuredData(result);
@@ -749,7 +650,7 @@ function copyToClipboard(text) {
 
 // Open Twitter share
 function openTwitterShare(shareData) {
-  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.text)}&url=${encodeURIComponent(shareData.url)}&image=${encodeURIComponent(shareData.image)}`;
+  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.text)}&url=${encodeURIComponent(shareData.url)}`;
   window.open(url, "_blank");
 }
 
@@ -773,9 +674,7 @@ function openLinkedInShare(shareData) {
 
 // Open Email share
 function openEmailShare(shareData) {
-  // Include the image in the email body as HTML if possible
-  const emailBody = `${shareData.text}\n\nTake the quiz here: ${shareData.url}\n\nMy result image: ${shareData.image}`;
-  const url = `mailto:?subject=${encodeURIComponent(shareData.title)}&body=${encodeURIComponent(emailBody)}`;
+  const url = `mailto:?subject=${encodeURIComponent(shareData.title)}&body=${encodeURIComponent(shareData.text + "\n\n" + shareData.url)}`;
   window.open(url, "_blank");
 }
 
