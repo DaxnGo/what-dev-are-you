@@ -2,7 +2,7 @@
 
 A fun interactive quiz to discover your developer personality type. Find out if you're a Bug Squasher, Pixel Perfectionist, Algorithm Architect, Cloud Whisperer, or Framework Fanatic!
 
-![Dev Personality Quiz](https://via.placeholder.com/800x400/4568dc/ffffff?text=Dev+Personality+Quiz)
+![image](https://github.com/user-attachments/assets/13ef9757-9832-47c2-b502-fa76d9a059a0)
 
 ## Features
 
